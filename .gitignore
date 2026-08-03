@@ -12,6 +12,6 @@ prototype-assets
 prototype-share
 tmp
 work
-script.js
-styles.css
-design-qa.md
+/script.js
+/styles.css
+/design-qa.md
