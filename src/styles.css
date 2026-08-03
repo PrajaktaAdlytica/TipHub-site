@@ -821,6 +821,77 @@ dt,
   transform: translate(5px, -3px);
 }
 
+.funding-announcements {
+  min-height: 760px;
+  background: var(--paper);
+}
+
+.funding-announcement-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 72px 0 46px;
+}
+
+.funding-announcement-card {
+  display: flex;
+  min-height: 330px;
+  padding: 32px;
+  flex-direction: column;
+  color: var(--chalk);
+  background: var(--carbon);
+  border-radius: 8px;
+  transition: transform 360ms var(--ease), background-color 360ms var(--ease);
+}
+
+.funding-announcement-card:nth-child(2) {
+  background: var(--teal);
+}
+
+.funding-announcement-card:nth-child(3) {
+  color: var(--carbon);
+  background: var(--orange);
+}
+
+.funding-announcement-card:hover {
+  transform: translateY(-10px);
+}
+
+.funding-announcement-card > strong {
+  margin-top: 52px;
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(54px, 5vw, 82px);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.funding-announcement-card h3 {
+  margin-top: 26px;
+  font-size: 25px;
+}
+
+.funding-announcement-card p {
+  margin-top: 10px;
+  opacity: 0.82;
+  font-size: 13px;
+}
+
+.funding-announcement-card > div {
+  display: flex;
+  gap: 22px;
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+.funding-announcement-card a {
+  color: inherit;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
 .notes-teaser {
   min-height: 860px;
 }
@@ -1579,8 +1650,8 @@ dt,
 .company-table-head,
 .company-row {
   display: grid;
-  grid-template-columns: 2fr 1.35fr 1fr 0.9fr 60px;
-  gap: 30px;
+  grid-template-columns: 2fr 1.25fr 0.72fr 0.85fr 0.65fr 84px;
+  gap: 22px;
   align-items: center;
 }
 
@@ -1624,8 +1695,7 @@ dt,
 }
 
 .company-row:hover .company-name > b,
-.company-row:hover > button,
-.company-row:hover > a {
+.company-row:hover .company-links a {
   color: var(--orange);
 }
 
@@ -1652,20 +1722,29 @@ dt,
   font-size: 14px;
 }
 
-.company-row > button,
-.company-row > a {
-  border: 0;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-  font-size: 23px;
-  text-decoration: none;
-  transition: transform 300ms var(--ease);
+.company-funding {
+  color: var(--orange);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px !important;
+  font-weight: 600;
 }
 
-.company-row:hover > button,
-.company-row:hover > a {
-  transform: translate(6px, -4px);
+.company-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.company-links a {
+  color: inherit;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 300ms var(--ease), transform 300ms var(--ease);
+}
+
+.company-links a:hover {
+  transform: translate(3px, -3px);
 }
 
 .portfolio-method {

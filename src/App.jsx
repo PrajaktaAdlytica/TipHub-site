@@ -220,7 +220,7 @@ function AccordionRow({
 
 function HomePage({ navigate, openPitch }) {
   const {
-    content: { convictionSteps, thesisThemes },
+    content: { convictionSteps, thesisThemes, portfolio },
   } = useTipHubContent();
   const [activeTheme, setActiveTheme] = useState(1);
   return (
@@ -312,9 +312,34 @@ function HomePage({ navigate, openPitch }) {
         </div>
       </section>
 
+      <section className="section funding-announcements">
+        <Reveal className="section-heading-grid">
+          <SectionLabel number="05">Portfolio announcements</SectionLabel>
+          <h2>Backing essential<br />companies early.</h2>
+          <p>Recent announced TipHub allocations across connected markets, intelligence infrastructure, and essential systems.</p>
+        </Reveal>
+        <div className="funding-announcement-grid">
+          {portfolio.slice(0, 3).map((company, index) => (
+            <Reveal key={company.id} className="funding-announcement-card" delay={index * 90}>
+              <span className="mono">ANNOUNCED ALLOCATION / 2026</span>
+              <strong>{company.funding}</strong>
+              <h3>{company.name}</h3>
+              <p>{company.description}</p>
+              <div>
+                <a href={company.website} target="_blank" rel="noreferrer">Website ↗</a>
+                <a href={company.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Link className="text-link" href="/companies" navigate={navigate}>
+          View all 25 companies <span aria-hidden="true">↗</span>
+        </Link>
+      </section>
+
       <section className="section notes-teaser">
         <Reveal className="section-heading-grid">
-          <SectionLabel number="05">Field notes</SectionLabel>
+          <SectionLabel number="06">Field notes</SectionLabel>
           <h2>Field notes from<br />the edge of obvious.</h2>
           <Link className="text-link" href="/field-notes" navigate={navigate}>
             View all notes <span aria-hidden="true">↗</span>
@@ -551,7 +576,7 @@ function CompaniesPage({ navigate, openPitch }) {
                 <span className="mono">{String(index + 1).padStart(2, "0")}</span>
                 <strong>{company.name}</strong>
                 <h3>{company.theme}</h3>
-                <span className="mono">{company.stage || "EARLY STAGE"}</span>
+                <span className="mono">{company.stage || "EARLY STAGE"} · {company.funding}</span>
                 <b>↗</b>
               </a>
             ))}
@@ -589,14 +614,17 @@ function CompaniesPage({ navigate, openPitch }) {
           </div>
           <div className="company-table" role="table" aria-label="Portfolio companies">
             <div className="company-table-head" role="row">
-              <span>Company</span><span>Thesis</span><span>Stage</span><span>Region</span><span>Open</span>
+              <span>Company</span><span>Thesis</span><span>Stage</span><span>Allocation</span><span>Region</span><span>Links</span>
             </div>
             {filtered.map((company, index) => (
               <Reveal key={company.id} delay={Math.min(index * 50, 300)}>
                 <article className="company-row" role="row">
                   <span className="company-name"><b>{String(index + 1).padStart(2, "0")}</b><span><strong>{company.name}</strong><small>{company.description}</small></span></span>
-                  <span>{company.theme}</span><span>{company.stage}</span><span>{company.region}</span>
-                  <a href={company.website} target="_blank" rel="noreferrer" aria-label={`Visit ${company.name}`}>↗</a>
+                  <span>{company.theme}</span><span>{company.stage}</span><span className="company-funding">{company.funding}</span><span>{company.region}</span>
+                  <span className="company-links">
+                    <a href={company.website} target="_blank" rel="noreferrer" aria-label={`Visit ${company.name} website`}>↗</a>
+                    <a href={company.linkedin} target="_blank" rel="noreferrer" aria-label={`Visit ${company.name} on LinkedIn`}>in</a>
+                  </span>
                 </article>
               </Reveal>
             ))}

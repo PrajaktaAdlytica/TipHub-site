@@ -22,7 +22,7 @@ export const fallbackContent = {
   },
   fundProfile: {
     fundName: "TipHub Ventures",
-    fundSize: "$500K",
+    fundSize: "$50M",
     stages: ["Pre-seed", "Seed"],
     firstCheque: "Case by case",
     partnership: "Founder aligned",

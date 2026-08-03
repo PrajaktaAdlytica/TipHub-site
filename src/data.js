@@ -2,7 +2,7 @@ export const thesisThemes = [
   {
     id: "01",
     title: "Intelligence infrastructure",
-    short: "Access",
+    short: "Intelligence infrastructure",
     description:
       "The hidden systems that make AI useful, reliable and accountable.",
     signal: "Automation is becoming infrastructure.",
@@ -60,13 +60,45 @@ export const convictionSteps = [
   },
 ];
 
-export const portfolio = Array.from({ length: 12 }, (_, index) => ({
+export const portfolio = [
+  ["Mandvia", "Fintech and agent payments", "Productive economies", "Seed", "$650K", "https://www.mandvia.com", "https://www.linkedin.com/company/mandvia/"],
+  ["Toolclave", "AI agent infrastructure", "Intelligence infrastructure", "Pre-seed", "$600K", "https://www.toolclave.com", "https://www.linkedin.com/company/toolclave/"],
+  ["ActClarity", "RegTech and AI compliance", "Intelligence infrastructure", "Seed", "$750K", "https://www.actclarity.com", "https://www.linkedin.com/company/actclarity/"],
+  ["Ampacify", "Energy and smart-grid intelligence", "Essential systems", "Seed", "$900K", "https://www.ampacify.com", "https://www.linkedin.com/company/ampacify/"],
+  ["Coolerra", "AI infrastructure for data centres", "Intelligence infrastructure", "Seed", "$800K", "https://www.coolerra.com", "https://www.linkedin.com/company/coolera/"],
+  ["TriaRoute", "Healthcare AI and care routing", "Connected markets", "Pre-seed", "$700K", "https://www.triaroute.com", "https://www.linkedin.com/company/triaroute/"],
+  ["FactoryCue", "Manufacturing intelligence", "Essential systems", "Seed", "$850K", "https://www.factorycue.com", "https://www.linkedin.com/company/factorycue/"],
+  ["SightRoot", "Computer vision for manufacturing", "Intelligence infrastructure", "Seed", "$775K", "https://www.sightroot.com", "https://www.linkedin.com/company/sightroot/"],
+  ["Polirail", "AI security infrastructure", "Intelligence infrastructure", "Pre-seed", "$625K", "https://www.polirail.com", "https://www.linkedin.com/company/polirail/"],
+  ["Disclera", "Sustainability and CSRD operations", "Essential systems", "Seed", "$700K", "https://www.disclera.com", "https://www.linkedin.com/company/disclera/"],
+  ["Permra", "AI agent infrastructure", "Intelligence infrastructure", "Pre-seed", "$600K", "https://www.permra.com", "https://www.linkedin.com/company/permaaa/"],
+  ["Scopwise", "AI agent infrastructure", "Intelligence infrastructure", "Pre-seed", "$650K", "https://www.scopwise.com", "https://www.linkedin.com/company/scopwise/"],
+  ["Gatevero", "AI agent infrastructure", "Intelligence infrastructure", "Seed", "$750K", "https://www.gatevero.com", "https://www.linkedin.com/company/gatevero/"],
+  ["Klimori", "Energy and building intelligence", "Essential systems", "Seed", "$900K", "https://www.klimori.com", "https://www.linkedin.com/company/klimori/"],
+  ["LoadLume", "Energy and demand response", "Essential systems", "Seed", "$850K", "https://www.loadlume.com", "https://www.linkedin.com/company/loadlume/"],
+  ["BessOpt", "Battery and energy intelligence", "Essential systems", "Seed", "$1.1M", "https://www.bessopt.com", "https://www.linkedin.com/company/bessopt/"],
+  ["HeatOptx", "Industrial heat and thermal systems", "Essential systems", "Seed", "$950K", "https://www.heatoptx.com", "https://www.linkedin.com/company/heatoptx/"],
+  ["Rackvisor", "AI infrastructure for data centres", "Intelligence infrastructure", "Seed", "$800K", "https://www.rackvisor.com", "https://www.linkedin.com/company/rackvisor/"],
+  ["MedOptio", "Healthcare and pharmacy AI", "Connected markets", "Seed", "$725K", "https://www.medoptio.com", "https://www.linkedin.com/company/medoplio/"],
+  ["WardDeck", "Healthcare operations", "Connected markets", "Pre-seed", "$650K", "https://www.warddeck.com", "https://www.linkedin.com/company/warddeck/"],
+  ["VisitNudge", "Healthcare and patient experience", "Connected markets", "Pre-seed", "$600K", "https://www.visitnudge.com", "https://www.linkedin.com/company/visitnudge/"],
+  ["ElderGrid", "Elder-care operations", "Connected markets", "Seed", "$700K", "https://www.eldergrid.com", "https://www.linkedin.com/company/eldergrid/"],
+  ["Refinvo", "Healthcare administration", "Productive economies", "Pre-seed", "$550K", "https://www.refinvo.com", "https://www.linkedin.com/company/reflno/"],
+  ["MachMemo", "Industrial AI", "Essential systems", "Seed", "$775K", "https://www.machmemo.com", "https://www.linkedin.com/company/machmemo/"],
+  ["ResolQa", "Manufacturing quality assurance", "Essential systems", "Pre-seed", "$625K", "https://www.resolqa.com", "https://www.linkedin.com/company/resolqa/"],
+].map(([name, description, theme, stage, funding, website, linkedin], index) => ({
   id: String(index + 1).padStart(2, "0"),
-  name: "Company name",
-  theme: thesisThemes[index % thesisThemes.length].short,
-  stage: ["Pre-seed", "Seed", "Selective A"][index % 3],
+  name,
+  description,
+  theme,
+  stage,
+  funding,
+  fundingLabel: "Announced TipHub allocation",
+  website,
+  linkedin,
   region: "Global",
   status: "Active",
+  yearInvested: "2026",
 }));
 
 export const team = [
