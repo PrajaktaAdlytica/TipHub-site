@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
+  List,
   Minus,
   Plus,
+  X,
 } from "@phosphor-icons/react";
 import {
   TipHubContentProvider,
@@ -117,26 +119,52 @@ function ArrowButton({ children, onClick, tone = "orange", type = "button" }) {
 }
 
 function Header({ path, navigate, openPitch, hero = false }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle("mobile-menu-open", mobileOpen);
+    return () => document.body.classList.remove("mobile-menu-open");
+  }, [mobileOpen]);
+
+  const goTo = (href) => {
+    setMobileOpen(false);
+    navigate(href);
+  };
+
   return (
-    <header className={`site-header ${hero ? "home-site-header" : ""}`}>
-      <Link href="/" navigate={navigate} className="brand-link" aria-label="TipHub home">
+    <header className={`site-header ${hero ? "home-site-header" : ""} ${mobileOpen ? "menu-is-open" : ""}`}>
+      <Link href="/" navigate={goTo} className="brand-link" aria-label="TipHub home">
         <img src="/brand/tiphub-logo-primary.svg" alt="TipHub" />
       </Link>
-      <nav aria-label="Primary navigation">
+      <nav id="primary-navigation" aria-label="Primary navigation">
         {routes.map((route) => (
           <Link
             key={route.href}
             href={route.href}
-            navigate={navigate}
+            navigate={goTo}
             className={`nav-link ${path === route.href ? "is-active" : ""}`}
           >
             {route.label}
           </Link>
         ))}
+        <button className="mobile-nav-pitch" type="button" onClick={() => { setMobileOpen(false); openPitch(); }}>
+          <span>Pitch TipHub</span>
+          <ArrowUpRight aria-hidden="true" size={20} weight="regular" />
+        </button>
       </nav>
       <button className="header-pitch" type="button" onClick={openPitch}>
         <span>Pitch TipHub</span>
         <ArrowUpRight aria-hidden="true" size={20} weight="regular" />
+      </button>
+      <button
+        className="mobile-menu-toggle"
+        type="button"
+        aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+        aria-expanded={mobileOpen}
+        aria-controls="primary-navigation"
+        onClick={() => setMobileOpen((open) => !open)}
+      >
+        {mobileOpen ? <X aria-hidden="true" size={26} /> : <List aria-hidden="true" size={28} />}
       </button>
     </header>
   );
