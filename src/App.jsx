@@ -1136,7 +1136,6 @@ function ProfileModal({ person, onClose }) {
 function TipHubApp() {
   const {
     content: { team },
-    cmsStatus,
   } = useTipHubContent();
   const { path, navigate } = useRoute();
   const [pitchOpen, setPitchOpen] = useState(false);
@@ -1169,7 +1168,7 @@ function TipHubApp() {
 
   return (
     <>
-      <div className="route-shell" data-cms-status={cmsStatus} key={path}>{page}</div>
+      <div className="route-shell" key={path}>{page}</div>
       <PitchModal open={pitchOpen} onClose={() => setPitchOpen(false)} />
       {profileIndex !== null && <ProfileModal person={team[profileIndex]} onClose={() => setProfileIndex(null)} />}
     </>

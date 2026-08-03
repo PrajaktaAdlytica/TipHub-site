@@ -6,20 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "cms:dev": "npm --prefix studio run dev",
-    "cms:build": "npm --prefix studio run build",
-    "cms:deploy": "npm --prefix studio run deploy",
-    "cms:seed": "npm --prefix studio run seed",
-    "cms:finalize": "npm --prefix studio run finalize"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.6",
     "@fontsource/ibm-plex-mono": "^5.2.6",
     "@fontsource/instrument-serif": "^5.2.6",
     "@phosphor-icons/react": "^2.1.10",
-    "@sanity/client": "^7.25.0",
-    "@sanity/image-url": "^2.1.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

@@ -304,10 +304,6 @@ def create_supporting_assets():
         ui_dir / "TipHub-Interaction-Motion-Spec.md",
     )
     shutil.copyfile(
-        ROOT / "outputs/TipHub-CMS-Editor-Guide.md",
-        governance_dir / "TipHub-CMS-Editor-Guide.md",
-    )
-    shutil.copyfile(
         ROOT / "outputs/TipHub-Content-Checklist.md",
         governance_dir / "TipHub-Content-Approval-Checklist.md",
     )
@@ -383,12 +379,12 @@ Prepared 31 July 2026.
 - 07-Graphic-Devices: Living Atlas construction guidance.
 - 08-UI-Patterns: interaction and motion specification.
 - 09-Social-Presentation: social share and deck-cover templates.
-- 10-Governance-Licenses: font licenses, CMS guide, and approval checklist.
+- 10-Governance-Licenses: font licenses and approval checklist.
 
 ## Source of truth
 
 Public website: https://tiphub-prototype-review.vercel.app/
-Content studio: https://tiphub-content.sanity.studio/
+Website content: src/data.js and src/content/fallbackContent.js
 
 ## Important status notes
 
@@ -986,7 +982,7 @@ def build_pdf():
         "07-Graphic-Devices / Living Atlas guidance",
         "08-UI-Patterns / interaction and motion",
         "09-Social-Presentation / OG and deck-cover templates",
-        "10-Governance-Licenses / licenses, CMS guide, approvals",
+        "10-Governance-Licenses / licenses and approvals",
     ]
     y = 355
     for i, line in enumerate(folders):

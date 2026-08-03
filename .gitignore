@@ -2,11 +2,7 @@
 .env*.local
 node_modules
 dist
-studio/node_modules
-studio/dist
 .env
-studio/.env
-studio/.sanity
 .DS_Store
 *.log
 coverage
