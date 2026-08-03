@@ -1650,7 +1650,7 @@ dt,
 .company-table-head,
 .company-row {
   display: grid;
-  grid-template-columns: 2fr 1.25fr 0.72fr 0.85fr 0.65fr 84px;
+  grid-template-columns: 2fr 1.25fr 0.72fr 0.85fr 0.65fr 126px;
   gap: 22px;
   align-items: center;
 }
@@ -1710,6 +1710,15 @@ dt,
   font-weight: 400;
 }
 
+.company-name a {
+  width: max-content;
+  text-decoration: none;
+}
+
+.company-name a:hover strong {
+  color: var(--orange);
+}
+
 .company-name small {
   margin-top: 8px;
   color: var(--teal);
@@ -1745,6 +1754,215 @@ dt,
 
 .company-links a:hover {
   transform: translate(3px, -3px);
+}
+
+/* Portfolio funding announcements */
+.funding-page {
+  background: var(--chalk);
+}
+
+.funding-page-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(320px, 0.7fr);
+  gap: 90px;
+  min-height: 720px;
+  padding: 82px 72px 76px;
+  background:
+    radial-gradient(circle at 73% 18%, rgb(185 204 196 / 52%), transparent 24%),
+    linear-gradient(135deg, var(--chalk) 0 68%, var(--paper) 68% 100%);
+  border-bottom: 1px solid var(--rule);
+}
+
+.funding-page-date {
+  display: block;
+  margin-top: 92px;
+  color: var(--teal);
+  font-size: 9px;
+}
+
+.funding-page-hero h1 {
+  max-width: 940px;
+  margin-top: 28px;
+  font-size: clamp(66px, 6.2vw, 102px);
+}
+
+.funding-page-hero h1 em {
+  color: var(--orange);
+  font-weight: 400;
+}
+
+.funding-page-hero aside {
+  align-self: end;
+  min-height: 330px;
+  padding: 34px;
+  color: var(--chalk);
+  background: var(--teal);
+  box-shadow: 22px 22px 0 var(--orange);
+}
+
+.funding-page-hero aside .mono {
+  font-size: 8px;
+}
+
+.funding-page-hero aside strong {
+  display: block;
+  margin-top: 92px;
+  font-family: "Instrument Serif", serif;
+  font-size: 82px;
+  font-weight: 400;
+  line-height: 0.85;
+}
+
+.funding-page-hero aside p {
+  max-width: 300px;
+  margin-top: 28px;
+  color: rgb(242 235 221 / 78%);
+  font-size: 14px;
+}
+
+.funding-page-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  padding: 130px 72px;
+}
+
+.funding-page-story .mono {
+  color: var(--teal);
+  font-size: 9px;
+}
+
+.funding-page-story h2 {
+  margin-top: 42px;
+}
+
+.funding-page-copy {
+  max-width: 610px;
+  padding-top: 48px;
+}
+
+.funding-page-copy p {
+  font-size: 18px;
+  line-height: 1.62;
+}
+
+.funding-page-copy p + p {
+  margin-top: 30px;
+}
+
+.funding-page-facts {
+  display: grid;
+  grid-template-columns: 1.45fr 0.55fr;
+  gap: 80px;
+  padding: 82px 72px;
+  color: var(--chalk);
+  background: var(--carbon);
+}
+
+.funding-page-facts dl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--rule-light);
+  border-left: 1px solid var(--rule-light);
+}
+
+.funding-page-facts dl div {
+  min-height: 145px;
+  padding: 26px;
+  border-right: 1px solid var(--rule-light);
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.funding-page-facts dt {
+  color: var(--mist);
+  font-size: 8px;
+}
+
+.funding-page-facts dd {
+  margin-top: 28px;
+  font-family: "Instrument Serif", serif;
+  font-size: 27px;
+}
+
+.funding-page-links {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule-light);
+}
+
+.funding-page-links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 82px;
+  color: var(--chalk);
+  border-bottom: 1px solid var(--rule-light);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 240ms var(--ease), padding 240ms var(--ease);
+}
+
+.funding-page-links a:hover {
+  padding-left: 12px;
+  color: var(--orange);
+}
+
+.funding-disclosure {
+  padding: 28px 72px;
+  color: rgb(18 23 21 / 62%);
+  background: var(--paper);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.next-announcement {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+  min-height: 260px;
+  padding: 62px 72px;
+  text-decoration: none;
+  background: var(--orange);
+  transition: color 280ms var(--ease), background-color 280ms var(--ease);
+}
+
+.next-announcement .mono {
+  grid-column: 1 / -1;
+  font-size: 9px;
+}
+
+.next-announcement strong {
+  font-family: "Instrument Serif", serif;
+  font-size: 74px;
+  font-weight: 400;
+}
+
+.next-announcement:hover {
+  color: var(--chalk);
+  background: var(--teal);
+}
+
+.next-announcement:hover svg {
+  transform: translateX(10px);
+}
+
+.next-announcement svg {
+  transition: transform 280ms var(--ease);
+}
+
+.announcement-not-found {
+  min-height: 640px;
+  padding: 90px 72px;
+}
+
+.announcement-not-found h1 {
+  margin: 80px 0 50px;
 }
 
 .portfolio-method {

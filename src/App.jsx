@@ -326,6 +326,7 @@ function HomePage({ navigate, openPitch }) {
               <h3>{company.name}</h3>
               <p>{company.description}</p>
               <div>
+                <Link href={`/companies/${company.slug}`} navigate={navigate}>Announcement →</Link>
                 <a href={company.website} target="_blank" rel="noreferrer">Website ↗</a>
                 <a href={company.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
               </div>
@@ -619,11 +620,13 @@ function CompaniesPage({ navigate, openPitch }) {
             {filtered.map((company, index) => (
               <Reveal key={company.id} delay={Math.min(index * 50, 300)}>
                 <article className="company-row" role="row">
-                  <span className="company-name"><b>{String(index + 1).padStart(2, "0")}</b><span><strong>{company.name}</strong><small>{company.description}</small></span></span>
+                  <span className="company-name"><b>{String(index + 1).padStart(2, "0")}</b><span><Link href={`/companies/${company.slug}`} navigate={navigate}><strong>{company.name}</strong></Link><small>{company.description}</small></span></span>
                   <span>{company.theme}</span><span>{company.stage}</span><span className="company-funding">{company.funding}</span><span>{company.region}</span>
                   <span className="company-links">
+                    <Link href={`/companies/${company.slug}`} navigate={navigate} aria-label={`Read ${company.name} funding announcement`}>→</Link>
                     <a href={company.website} target="_blank" rel="noreferrer" aria-label={`Visit ${company.name} website`}>↗</a>
                     <a href={company.linkedin} target="_blank" rel="noreferrer" aria-label={`Visit ${company.name} on LinkedIn`}>in</a>
+                    <a href={company.crunchbase} target="_blank" rel="noreferrer" aria-label={`Visit ${company.name} on Crunchbase`}>cb</a>
                   </span>
                 </article>
               </Reveal>
@@ -653,6 +656,102 @@ function CompaniesPage({ navigate, openPitch }) {
       </main>
       <ConversionBlock kicker="Explore the terrain" title="Looking for the thesis behind the index?" button="What we back" onClick={() => navigate("/what-we-back")} tone="teal" />
       <Footer navigate={navigate} tone="teal" />
+    </>
+  );
+}
+
+function FundingAnnouncementPage({ navigate, openPitch, slug }) {
+  const {
+    content: { portfolio },
+  } = useTipHubContent();
+  const company = portfolio.find((item) => item.slug === slug);
+
+  if (!company) {
+    return (
+      <>
+        <Header path="/companies" navigate={navigate} openPitch={openPitch} />
+        <main className="announcement-not-found">
+          <SectionLabel number="404">Portfolio announcement</SectionLabel>
+          <h1>Company not found.</h1>
+          <Link href="/companies" navigate={navigate} className="text-link">Return to companies →</Link>
+        </main>
+        <Footer navigate={navigate} />
+      </>
+    );
+  }
+
+  const index = portfolio.findIndex((item) => item.id === company.id);
+  const nextCompany = portfolio[(index + 1) % portfolio.length];
+
+  return (
+    <>
+      <Header path="/companies" navigate={navigate} openPitch={openPitch} />
+      <main>
+        <article className="funding-page">
+          <header className="funding-page-hero">
+            <div>
+              <SectionLabel number={company.id}>Portfolio announcement</SectionLabel>
+              <span className="funding-page-date mono">{company.announcementDate}</span>
+              <h1>TipHub announces a<br /><em>{company.funding} allocation</em><br />to {company.name}.</h1>
+            </div>
+            <aside>
+              <span className="mono">ANNOUNCED ALLOCATION</span>
+              <strong>{company.funding}</strong>
+              <p>{company.description}</p>
+            </aside>
+          </header>
+
+          <section className="funding-page-story">
+            <div>
+              <span className="mono">WHY THIS COMPANY</span>
+              <h2>Building essential<br />systems before consensus.</h2>
+            </div>
+            <div className="funding-page-copy">
+              <p>
+                TipHub has announced a {company.funding} portfolio allocation to {company.name},
+                a {company.stage.toLowerCase()} company working in {company.description.toLowerCase()}.
+                The company reflects our conviction that overlooked operating constraints can become
+                durable, globally relevant infrastructure.
+              </p>
+              <p>
+                We are partnering early, with a global mandate and a founder-aligned approach. Our work
+                extends beyond capital to practical support across product, markets, talent, and the next
+                critical company-building inflection.
+              </p>
+            </div>
+          </section>
+
+          <section className="funding-page-facts">
+            <dl>
+              <div><dt>Company</dt><dd>{company.name}</dd></div>
+              <div><dt>Stage</dt><dd>{company.stage}</dd></div>
+              <div><dt>TipHub allocation</dt><dd>{company.funding}</dd></div>
+              <div><dt>Thesis</dt><dd>{company.theme}</dd></div>
+              <div><dt>Scope</dt><dd>{company.region}</dd></div>
+              <div><dt>Announced</dt><dd>{company.announcementDate}</dd></div>
+            </dl>
+            <div className="funding-page-links">
+              <a href={company.website} target="_blank" rel="noreferrer">Company website <ArrowUpRight size={20} /></a>
+              <a href={company.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={20} /></a>
+              <a href={company.crunchbase} target="_blank" rel="noreferrer">Crunchbase <ArrowUpRight size={20} /></a>
+            </div>
+          </section>
+
+          <p className="funding-disclosure">
+            The allocation shown is information supplied and announced by TipHub. It is not an
+            independent verification of the company’s total financing and may be updated if an official
+            company disclosure differs.
+          </p>
+
+          <Link href={`/companies/${nextCompany.slug}`} navigate={navigate} className="next-announcement">
+            <span className="mono">NEXT PORTFOLIO ANNOUNCEMENT</span>
+            <strong>{nextCompany.name}</strong>
+            <ArrowRight size={34} />
+          </Link>
+        </article>
+      </main>
+      <ConversionBlock kicker="Build with TipHub" title="Building something essential before it is obvious?" button="Pitch TipHub" onClick={openPitch} />
+      <Footer navigate={navigate} />
     </>
   );
 }
@@ -1163,7 +1262,7 @@ function ProfileModal({ person, onClose }) {
 
 function TipHubApp() {
   const {
-    content: { team },
+    content: { team, portfolio },
   } = useTipHubContent();
   const { path, navigate } = useRoute();
   const [pitchOpen, setPitchOpen] = useState(false);
@@ -1179,13 +1278,18 @@ function TipHubApp() {
       "/field-notes/infrastructure-hiding-inside-ordinary-work": "The infrastructure hiding inside ordinary work — TipHub",
       "/about": "About — TipHub",
     };
-    document.title = titles[path] || titles["/"];
-  }, [path]);
+    const companySlug = path.startsWith("/companies/") ? path.split("/").filter(Boolean).at(-1) : null;
+    const company = companySlug ? portfolio.find((item) => item.slug === companySlug) : null;
+    document.title = company ? `${company.name} funding announcement — TipHub` : (titles[path] || titles["/"]);
+  }, [path, portfolio]);
 
   const pageProps = { navigate, openPitch: () => setPitchOpen(true) };
   let page;
   if (path === "/what-we-back") page = <WhatWeBackPage {...pageProps} />;
   else if (path === "/companies") page = <CompaniesPage {...pageProps} />;
+  else if (path.startsWith("/companies/")) {
+    page = <FundingAnnouncementPage {...pageProps} slug={path.split("/").filter(Boolean).at(-1)} />;
+  }
   else if (path === "/founder-platform") page = <FounderPlatformPage {...pageProps} />;
   else if (path === "/field-notes") page = <FieldNotesPage {...pageProps} />;
   else if (path.startsWith("/field-notes/")) {
