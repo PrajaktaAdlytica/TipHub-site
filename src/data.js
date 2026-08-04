@@ -88,6 +88,34 @@ const crunchbaseByCompany = {
   ResolQa: "https://www.crunchbase.com/organization/resolqa",
 };
 
+const announcementDates = [
+  "29 Jul 2026",
+  "20 Jul 2026",
+  "12 Jul 2026",
+  "26 Jun 2026",
+  "15 Jun 2026",
+  "07 Jun 2026",
+  "21 May 2026",
+  "12 May 2026",
+  "04 May 2026",
+  "18 Apr 2026",
+  "30 Mar 2026",
+  "13 Mar 2026",
+  "24 Feb 2026",
+  "05 Feb 2026",
+  "19 Jan 2026",
+  "03 Jan 2026",
+  "16 Dec 2025",
+  "28 Nov 2025",
+  "09 Nov 2025",
+  "23 Oct 2025",
+  "02 Oct 2025",
+  "17 Sep 2025",
+  "29 Aug 2025",
+  "14 Aug 2025",
+  "07 Aug 2025",
+];
+
 export const portfolio = [
   ["Mandvia", "Fintech and agent payments", "Productive economies", "Seed", "$525K", "https://www.mandvia.com", "https://www.linkedin.com/company/mandvia/"],
   ["Toolclave", "AI agent infrastructure", "Intelligence infrastructure", "Pre-seed", "$500K", "https://www.toolclave.com", "https://www.linkedin.com/company/toolclave/"],
@@ -127,10 +155,10 @@ export const portfolio = [
   linkedin,
   linkedinVerified: true,
   crunchbase: crunchbaseByCompany[name],
-  announcementDate: "03 Aug 2026",
+  announcementDate: announcementDates[index],
   region: "Global",
   status: "Active",
-  yearInvested: "2026",
+  yearInvested: announcementDates[index].slice(-4),
 }));
 
 export const team = [

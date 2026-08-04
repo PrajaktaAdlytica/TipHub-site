@@ -349,7 +349,7 @@ function HomePage({ navigate, openPitch }) {
         <div className="funding-announcement-grid">
           {portfolio.slice(0, 3).map((company, index) => (
             <Reveal key={company.id} className="funding-announcement-card" delay={index * 90}>
-              <span className="mono">ANNOUNCED ALLOCATION / 2026</span>
+              <span className="mono">ANNOUNCED ALLOCATION / {company.yearInvested}</span>
               <strong>{company.funding}</strong>
               <h3>{company.name}</h3>
               <p>{company.description}</p>
